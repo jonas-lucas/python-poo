@@ -1,7 +1,7 @@
 from datetime import datetime
 
 class Pessoa:
-    ano_atual = int(datetime.strftime(datetime.now(), '%Y'))
+    ano_atual = datetime.now().year
 
     def __init__(self, nome, idade, comendo=False, falando=False):
         self.nome = nome
@@ -10,44 +10,36 @@ class Pessoa:
         self.falando = falando
 
     def falar(self, assunto):
-        if self.comendo:
+        if self.comendo:    # Se estiver comendo
             print(f'{self.nome} não pode falar comendo.')
-            return
-        
-        if self.falando:
+        elif self.falando:  # Se já estiver falando 
             print(f'{self.nome} já está falando.')
-            return
-        
-        print(f'{self.nome} está falando sobre {assunto}.')
-        self.falando = True
+        else:               # Começar a falar
+            print(f'{self.nome} está falando sobre {assunto}.')
+            self.falando = True
 
     def parar_falar(self):
-        if not self.falando:
+        if not self.falando:    # Se não estiver falando
             print(f'{self.nome} não está falando.')
-            return
-        
-        print(f'{self.nome} parou de falar.')
-        self.falando = False
+        else:                   # Parar de falar
+            print(f'{self.nome} parou de falar.')
+            self.falando = False
 
     def comer(self, alimento):
-        if self.comendo:
-            print(f'{self.nome} já está comendo.')
-            return
-        
-        if self.falando:
+        if self.falando:    # Se estiver falando
             print(f'{self.nome} não pode comer falando.')
-            return
-        
-        print(f'{self.nome} está comendo {alimento}.')
-        self.comendo = True
+        elif self.comendo:  # Se já estiver comendo
+            print(f'{self.nome} já está comendo.')        
+        else:               # Começar a comer
+            print(f'{self.nome} está comendo {alimento}.')
+            self.comendo = True
 
     def parar_comer(self):
-        if not self.comendo:
+        if not self.comendo:    # Se não estiver comendo
             print(f'{self.nome} não está comendo.')
-            return
-        
-        print(f'{self.nome} parou de comer.')
-        self.comendo = False
+        else:                   # Parar de comer
+            print(f'{self.nome} parou de comer.')
+            self.comendo = False
 
     def get_ano_nascimento(self):
         return self.ano_atual - self.idade
